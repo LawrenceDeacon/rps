@@ -1,6 +1,11 @@
-// Display
+// Listener
 
-
+const button = document.querySelectorAll('button');
+button.forEach((e) => {
+    e.addEventListener('click', function (e) {
+        console.log(e);
+    });
+})
 
 // Computer Choice
 function computerPlays() {
@@ -115,4 +120,3 @@ function game() {
     tie = 0;
     lose = 0;
 }
-game();
