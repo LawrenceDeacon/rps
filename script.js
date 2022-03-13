@@ -1,3 +1,9 @@
+
+
+
+
+
+
 // Rock paper scissors in console
 
 // Computer Choice
@@ -22,7 +28,6 @@ function computerPlays() {
 
 // Player Choice
 function playerChoice (){
-    let choice = prompt().toLowerCase();
     let result = comparison(choice, computerPlays());
     return result;
 }
@@ -113,6 +118,5 @@ function game() {
     win = 0;
     tie = 0;
     lose = 0;
-    confirm("Play again?", () => {true? game() : alert("Good Bye!")})
 }
 game();
