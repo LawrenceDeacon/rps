@@ -1,10 +1,6 @@
+// Display
 
 
-
-
-
-
-// Rock paper scissors in console
 
 // Computer Choice
 function computerPlays() {
