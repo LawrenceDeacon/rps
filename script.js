@@ -25,9 +25,12 @@ button.forEach((e) => {
 })
 
 // Dynamic Display
-const playerResults = document.querySelector('.playerResults');
-const computerResults = document.querySelector('.computerResults');
+let playerResults = document.querySelector('.playerResults');
+let computerResults = document.querySelector('.computerResults');
+let currentResults = document.querySelector('.currentResults');
 
+let addOl = document.createElement('ol')
+let addLi = document.createElement('li')
 
 
 
@@ -36,6 +39,18 @@ let play = false;
 
 // Results array to determine winner
 let results = [];
+
+// Add results to display
+function addResults(side, result) {
+    if (side == "playerResults") {
+        playerResults.appendChild(addLi);
+
+    }else if (side == "computerResults") {
+        computerResults.appendChild(addLi.textContent = result);
+    }else{
+        currentResults.appendChild(addLi.textContent = result);
+    }
+}
 
 
 // Player choice
@@ -59,11 +74,16 @@ function computerPlays() {
 
 // Set game length
 function gameRound(e) {
+    let computerResult = computerPlays();
+    let result = comparison(playerChoice, computerResult )
     if (results.length < 2) {
-        results.push(comparison(playerChoice, computerPlays));
+        results.push(result);
+        addResults("playerResults", playerChoice);
+        addResults("computerResults", computerResult);
+        addResults("currentResults", result);
         console.log(results.length)
     } else {
-        results.push(comparison(playerChoice, computerPlays));
+        results.push(comparison(playerChoice, computerPlays()));
         game();
         results = [];
     }
@@ -75,6 +95,7 @@ function game() {
     let tie = 0;
     let lose = 0;
     results.forEach((item) => {
+        item.toLowerCase();
         if (item == 'lose') {
             lose++
         } else if (item == 'win') {
