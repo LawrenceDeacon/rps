@@ -5,20 +5,31 @@ button.forEach((e) => {
     e.addEventListener('click', function (e) {
         console.log(e.target.outerText);
         playerChoice = e.target.outerText;
-        if(e.target.outerText == "Play" || e.target.outerText == "Cancel"){
+        if (e.target.outerText == "Play" || e.target.outerText == "Cancel") {
             if (play == false) {
                 play = true;
                 playButton.textContent = "Cancel";
-            }else if(play == true){
+            } else if (play == true) {
                 play = false;
                 playButton.textContent = "Play";
             }
-        }else{
+        } else {
             playerChoice = e.target.outerText;
-
+            if (play == true) {
+                gameRound();
+            } else {
+                alert("Press Play First!")
+            }
         }
     });
 })
+
+// Dynamic Display
+const playerResults = document.querySelector('.playerResults');
+const computerResults = document.querySelector('.computerResults');
+
+
+
 
 // Toggles when pressing play button
 let play = false;
@@ -46,12 +57,19 @@ function computerPlays() {
     return result;
 }
 
-function game() {
-    for (let index = 0; index < 2; index++) {
-        results[index] = playerChoice.toLowerCase();
-        computerPlays();
-        // console.log(results[index]);
+// Set game length
+function gameRound(e) {
+    if (results.length < 2) {
+        results.push(comparison(playerChoice, computerPlays));
+        console.log(results.length)
+    } else {
+        results.push(comparison(playerChoice, computerPlays));
+        game();
+        results = [];
     }
+}
+
+function game() {
     console.log(results);
     let win = 0;
     let tie = 0;
@@ -78,6 +96,7 @@ function game() {
 }
 
 function comparison(player, computer) {
+    player = player.toLowerCase();
     switch (player) {
         case "rock":
             if (computer == "rock") {
