@@ -1,9 +1,12 @@
 // Listener
-
 const button = document.querySelectorAll('button');
 button.forEach((e) => {
     e.addEventListener('click', function (e) {
-        console.log(e);
+        if (e.target.outerText == "play") {
+            game();
+        }
+
+        console.log(e.target.outerText);
     });
 })
 
@@ -12,24 +15,15 @@ function computerPlays() {
     let choice = Math.random();
     // let choice = 0.6;
     let result;
-    function computation() {
-        if (choice < 0.3) {
-            result = "rock";
-        } else if (choice >= 0.3 && choice <= 0.6) {
-            result = "paper";
-        } else if (choice > 0.6) {
-            result = "scissors"
-        }
+    if (choice < 0.3) {
+        result = "rock";
+    } else if (choice >= 0.3 && choice <= 0.6) {
+        result = "paper";
+    } else if (choice > 0.6) {
+        result = "scissors"
     }
-    computation();
     // console.log(choice);
     // console.log(result);
-    return result;
-}
-
-// Player Choice
-function playerChoice (){
-    let result = comparison(choice, computerPlays());
     return result;
 }
 
@@ -40,11 +34,11 @@ function comparison(player, computer) {
                 console.log("This was a tie!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "tie";
-            } else if(computer == "paper"){
+            } else if (computer == "paper") {
                 console.log("You Lose!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "lose";
-            }else{
+            } else {
                 console.log("You Win!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "Win";
@@ -55,11 +49,11 @@ function comparison(player, computer) {
                 console.log("You Win!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "Win";
-            } else if(computer == "paper"){
+            } else if (computer == "paper") {
                 console.log("This was a tie!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "tie";
-            }else{
+            } else {
                 console.log("You Lose!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "Lose";
@@ -70,11 +64,11 @@ function comparison(player, computer) {
                 console.log("You Lose!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "Lose";
-            } else if(computer == "paper"){
+            } else if (computer == "paper") {
                 console.log("You Win!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "Win";
-            }else{
+            } else {
                 console.log("This was a tie!");
                 console.log(`Player chose ${player} & Computer chose ${computer}`)
                 return "tie";
@@ -89,9 +83,11 @@ function comparison(player, computer) {
     }
 }
 
-function game() {  
+
+
+function game() {
     let results = [];
-    for (let index = 0; index < 3; index++) {
+    for (let index = 0; index < 1; index++) {
         results[index] = playerChoice().toLowerCase();
         computerPlays();
         // console.log(results[index]);
@@ -103,17 +99,17 @@ function game() {
     results.forEach((item) => {
         if (item == 'lose') {
             lose++
-        } else if(item == 'win'){
+        } else if (item == 'win') {
             win++
-        }else {
+        } else {
             tie++
         }
     })
     if (win > tie && win > lose) {
         console.log("You Have won!")
-    } else if(lose > tie && lose > win){
+    } else if (lose > tie && lose > win) {
         console.log("You Have Lost!")
-    }else {
+    } else {
         console.log("You Have Tied!")
     }
     win = 0;
